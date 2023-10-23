@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}"
+      layout:fragment="main">
+<head>
+    <title>커뮤니티 관리 페이지</title>
+    <link rel="stylesheet" href="/css/admin/management_community.css">
+</head>
+<body>
+
+
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <section>
+        <h1 class="title">커뮤니티 관리 페이지</h1>
+        <div class="btn-del">
+            <button type="button" class="btn-basic" onclick="del()">삭제</button>
+        </div>
+
+        <div class="input-container">
+            <select id="category" class="category">
+                <option value="all">전체</option>
+                <option th:selected="${category == selectedCategory}" th:each="category : ${communityCategories}" th:text="${category.name}" th:value="${category}"></option>
+            </select>
+            <div class="search-container">
+                <input type="text" id="search-input">
+                <button type="button" id="search-btn">검색</button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="sort">No <span th:classappend="${sort.target == 'id' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" class="sort-icon" data-id="id"></ion-icon></span></th>
+                    <th>카테고리</th>
+                    <th class="sort cell-title">제목 <span th:classappend="${sort.target == 'title' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" data-id="title"></ion-icon></span></th>
+                    <th class="sort">작성자 ID <span th:classappend="${sort.target == 'createBy' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" data-id="createBy"></ion-icon></span></th>
+                    <th class="sort">닉네임 <span th:classappend="${sort.target == 'name' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" name="caret-up-outline" data-id="name"></ion-icon></span></th>
+                    <th class="sort">작성날짜 <span th:classappend="${sort.target == 'createTime' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" name="caret-up-outline" data-id="createTime"></ion-icon></span></th>
+                    <th class="sort">조회수 <span th:classappend="${sort.target == 'view' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" name="caret-up-outline" data-id="view"></ion-icon></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="page : ${pages}">
+                    <td><input type="checkbox" class="ck" th:value="${page.id}"></td>
+                    <td th:text="${page.id}">12.</td>
+                    <td th:text="${page.communityCategory.name}">정보</td>
+                    <td class="text-left"><a href="#" th:href="@{|/community/${page.id}|}" th:text="${page.title}">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione, illum autem? Inventore ipsum saepe eius ex maiores reprehenderit totam numquam omnis expedita voluptates quis nobis aspernatur nisi animi, quo id!</a></td>
+                    <td th:text="${page.createBy}">작성ID</td>
+                    <td th:text="${page.name}">닉네임</td>
+                    <td th:text="${#temporals.format(page.createTime, 'yyyy-MM-dd')}">작성날짜</td>
+                    <td th:text="${page.views}">1</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-container">
+            <ion-icon th:data-prev="${pages.number-1}" id="prev" name="caret-back-circle-outline" class="page-btn" th:classappend="${pages.hasPrevious ? '' : 'disable'}"></ion-icon>
+            <input id="page-input" type="number" class="page-input" th:value="${pages.number + 1}" th:data-last-page="${pages.totalPages}">
+            <span>/</span>
+            <span th:text="${pages.totalPages}">10</span>
+            <ion-icon th:data-next="${pages.number+1}" id="next" name="caret-forward-circle-outline" class="page-btn" th:classappend="${pages.hasNext ? '' : 'disable'}"></ion-icon>
+        </div>
+    </section>
+</main>
+
+<script>
+
+</script>
+
+<script src="/js/admin/management_community.js"></script>
+
+</body>
+</html>

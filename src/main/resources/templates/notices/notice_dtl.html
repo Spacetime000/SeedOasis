@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>공지사항</title>
+    <link rel="stylesheet" href="../../static/css/notices/notice_dtl.css" th:href="@{/css/notices/notice_dtl.css}">
+</head>
+<body>
+<main>
+    <section th:object="${notice}">
+        <div class="head-title">공지사항</div>
+        <div class="title" th:text="*{title}">글 제목 텍스트 글자입니다.</div>
+        <div>
+            <span class="state" th:text="${#temporals.format(notice.createTime, 'yyyy-MM-dd HH:mm')}">2022.02.02. 02:22</span>
+            <span class="state" th:text="'조회수 ' + *{views}"></span>
+        </div>
+        <hr class="division">
+        <div class="content" th:utext="*{content}"></div>
+        <hr class="division">
+        <div class="btns">
+            <button class="btn" sec:authorize="hasRole('ROLE_ADMIN')" type="button" th:onclick="|location.href='@{/notice/}' + *{noticeId} + '/modify'|">수정</button>
+            <button class="btn" type="button" id="btn-list">목록</button>
+            <button class="btn" type="button" id="btn-del" th:data-id="*{noticeId}" sec:authorize="hasRole('ROLE_ADMIN')">삭제</button>
+        </div>
+    </section>
+</main>
+<script src="../../static/js/notices/notice_dtl.js" th:src="@{/js/notices/notice_dtl.js}"></script>
+</body>
+</html>

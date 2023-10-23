@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 작성</title>
+    <link rel="stylesheet" href="../../static/css/notices/notice_form.css" th:href="@{/css/notices/notice_form.css}">
+
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+</head>
+<body>
+    <main>
+        <section>
+            <form action method="POST" enctype="multipart/form-data" th:object="${noticeFormDto}">
+                <input type="hidden" th:field="*{noticeId}">
+                <div class="title">
+                    <h1 th:if="${#strings.isEmpty(noticeFormDto.noticeId)}">공지사항 - 새 글 작성하기</h1>
+                    <h1 th:unless="${#strings.isEmpty(noticeFormDto.noticeId)}">공지사항 수정</h1>
+                    <div class="btn">
+                        <button type="submit" class="btn-notice" th:if="${#strings.isEmpty(noticeFormDto.noticeId)}">등 록</button>
+                        <button type="submit" class="btn-notice" th:unless="${#strings.isEmpty(noticeFormDto.noticeId)}">수 정</button>
+                        <button type="button" onclick="cancel()" class="btn-notice" th:onclick="|location.href='@{/notice}'|">취 소</button>
+                    </div>
+                </div>
+                <input type="text" placeholder="제목을 입력해주세요." class="input-notice-title" th:field="*{title}">
+                <p class="error" th:errors="*{title}">에러 메시지</p>
+                <textarea name="editor" id="editor" cols="30" rows="10" th:field="*{content}"></textarea>
+            </form>
+            
+            <script>
+                class MyUploadAdapter {
+                    constructor( loader ) {
+                        this.loader = loader;
+                    }
+                
+                    upload() {
+                        return this.loader.file
+                            .then( file => new Promise( ( resolve, reject ) => {
+                                this._initRequest();
+                                this._initListeners( resolve, reject, file );
+                                this._sendRequest( file );
+                            } ) );
+                    }
+                
+                    abort() {
+                        if ( this.xhr ) {
+                            this.xhr.abort();
+                        }
+                    }
+
+                    _initRequest() {
+                        const xhr = this.xhr = new XMLHttpRequest();
+                        xhr.open( 'POST', '/notice/upload', true );
+                        xhr.responseType = 'json';
+                    }
+
+                    _initListeners( resolve, reject, file ) {
+                        const xhr = this.xhr;
+                        const loader = this.loader;
+                        const genericErrorText = `Couldn't upload file: ${ file.name }.`;
+                
+                        xhr.addEventListener( 'error', () => reject( genericErrorText ) );
+                        xhr.addEventListener( 'abort', () => reject() );
+                        xhr.addEventListener( 'load', () => {
+                            const response = xhr.response;
+                
+                             if ( !response || response.error ) {
+                                return reject( response && response.error ? response.error.message : genericErrorText );
+                            }
+                
+                            resolve( {
+                                default: response.url
+                            } );
+                        } );
+            
+                        if ( xhr.upload ) {
+                            xhr.upload.addEventListener( 'progress', evt => {
+                                if ( evt.lengthComputable ) {
+                                    loader.uploadTotal = evt.total;
+                                    loader.uploaded = evt.loaded;
+                                }
+                            } );
+                        }
+                    }
+
+                    _sendRequest( file ) {
+                        const data = new FormData();
+                
+                        data.append( 'upload', file );
+                        this.xhr.send( data );
+                    }
+                }
+                
+                ClassicEditor
+                    .create( document.querySelector('#editor'))
+                    .then(editor => {
+                        editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+                            return new MyUploadAdapter( loader );
+                        };                        
+                    })
+                    .catch( error => {
+                        console.error( error );
+                    } );
+
+            </script>            
+        </section>
+    </main>
+    <script src="../../static/js/notices/notice_new.js" th:src="@{/js/notices/notice_form.js}"></script>
+</body>
+</html>

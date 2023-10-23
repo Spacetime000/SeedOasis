@@ -1,0 +1,496 @@
+@font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'S-CoreDream-3Light';
+}
+
+:root {
+    --text-color: black; 
+    --bg-color: #F1F5F7; 
+    --main-color: #1E90FF;
+    --input-color: #E3E2E2; 
+    --menu-color: #EDEAE3;
+    --even-color: #f3f3f3;
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: var(--main-color);
+}
+
+.error {
+    color: red;
+    font-size: .7rem;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.dark {
+    --text-color: #F1F5F7; /* 크리스마스 리화 */
+    --bg-color: #020715; /* 시암블랙 */
+    --input-color: #1B1C1F; /* 하기 리블 */
+    --menu-color: #202143;
+    --even-color: #3f3f3f;
+}
+
+.logo {
+    font-family: 'SDSamliphopangche_Outline';
+    color: var(--text-color);
+    font-size: 50px;
+    text-decoration: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 50px;
+    width: 100%;
+    background: var(--bg-color);
+}
+
+.header-list {
+    display: flex;
+    list-style: none;
+}
+
+.header-list a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0 40px;
+}
+
+.header-list a:hover {
+    color: var(--main-color);
+}
+
+.header-list a.active {
+    color: #3678F1;
+}
+
+.btn-login {
+    background: var(--main-color);
+    padding: 10px 30px;
+    text-decoration: none;
+    color: var(--bg-color);
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    /* margin-right: 20px; */
+    border-radius: 10px;
+}
+
+.btn-login:hover {
+    color: red;
+}
+
+#darkmode {
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+#menu-icon {
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: none;
+}
+
+.use {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.use .profile {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.use .profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    object-fit: cover;
+}
+
+/* 로그인 유저 메뉴 */
+.profile-menu {
+    background: var(--menu-color);
+    position: absolute;
+    top: calc(100% + 20px);
+    width: 200px;
+    right: 25px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 20px 5px var(--text-color); */
+    display: none;
+}
+
+.profile-menu::before {
+    content: ' ';
+    position: absolute;
+    background: var(--menu-color);
+    top: -10px;
+    right: 40px;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+}
+
+.profile-menu.active {
+    display: block;
+}
+
+.profile-menu ul li {
+    list-style: none;
+    padding: 10px 10px;
+}
+
+.profile-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.profile-menu a:hover {
+    color: var(--main-color);
+}
+
+.profile-menu a span {
+    vertical-align: middle;
+}
+
+main {
+    margin: 140px 50px;
+}
+
+footer {
+    background: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+footer p {
+    color: var(--text-color);
+}
+
+footer .wave {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(../img/wave.png);
+    background-size: 1000px 100px;
+}
+
+footer .footer-menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+footer .footer-menu a {
+    text-decoration: none;
+    color: var(--bg-color);
+    margin: 0 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+footer .footer-menu a:hover {
+    color: var(--text-color);
+}
+
+footer .wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    animation: animateWave 4s linear infinite;
+}
+
+footer .wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    animation: animateWave2 4s linear infinite;
+}
+
+footer .wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    animation: animateWave 3s linear infinite;
+}
+
+footer .wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    animation: animateWave2 3s linear infinite;
+}
+
+.no-select {
+    user-select: none;
+}
+
+/* 기본 버튼 */
+.btn-basic {
+    background: var(--main-color);
+    border: none;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+/* 기본 테이블 */
+.basic-table {
+    border-collapse: collapse;
+    width: 1000px;
+    margin: 20px 0;
+}
+
+.basic-table th,
+.basic-table td {
+    text-align: center;
+    padding: 12px 15px;
+}
+
+.basic-table thead tr {
+    background: var(--main-color);
+}
+
+.basic-table tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.basic-table tr:nth-of-type(even) {
+    background-color: var(--even-color);
+}
+
+.basic-table tbody a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.basic-table tbody a:hover {
+    cursor: pointer;
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+/* 텍스트 정렬 */
+.text-left {
+    text-align: start !important;
+}
+
+/* 페이지 쪽수 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+}
+
+.pagination-container button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination-container button.disable {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    background: var(--bg-color);
+    border: solid 2px #666;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.pagination ul {
+    display: flex;
+    list-style: none;
+    margin: 0 30px;
+}
+
+.pagination ul li {
+    display: inline-block;
+    margin: 0 10px;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination ul li:hover {
+    scale: 1.2;
+}
+
+.pagination ul li.active {
+    color: var(--main-color);
+    background: var(--text-color);
+}
+
+/* msg */
+.empty-message {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 64px;
+    font-weight: bold;
+}
+
+/* 물결 */
+@keyframes animateWave {
+    0% {
+        background-position-x: 1000px;
+    }
+    100% {
+        background-position-x: 0%;
+    }
+}
+
+@keyframes animateWave2 {
+    0% {
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: 1000px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .header-list a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 860px) {
+    #menu-icon {
+        display: initial;
+    }
+
+    #darkmode {
+        margin: 0;
+    }
+    
+    .header-list {
+        position: absolute;
+        top: 100%;
+        background: var(--bg-color);
+        display: none;
+        flex-direction: column;
+        left: 50px;
+        right: 0;
+    }
+
+    .header-list.open {
+        display: flex;
+    }
+
+    .header-list li {
+        margin: 5px 0;
+    }
+
+    .header-list li a {
+        margin: 0;
+    }
+
+    .profile-menu::before {
+        right: 75px;
+    }
+
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 10px 10px;
+    }
+
+    .header-list {
+        left: 10px;
+    }
+
+    .use {
+        flex-direction: column;
+    }
+
+    .btn-login {
+        padding: 5px 15px;
+    }
+
+    footer .footer-menu a {
+        margin: 0 5px;
+        font-size: .7rem;
+        font-weight: bold;
+    }
+
+    main {
+        margin: 160px 10px;
+    }
+
+    .profile-menu {
+        right: 0px;
+        top: calc(50% + 5px);
+    }
+
+    .profile-menu::before {
+        right: 15px;
+    }
+}

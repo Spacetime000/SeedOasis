@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SeedOasis - 로그인</title>
+        <link rel="stylesheet" href="../../static/css/default.css" th:href="@{/css/default.css}">
+        <link rel="stylesheet" href="../../static/css/member/login.css" th:href="@{/css/member/login.css}">
+    </head>
+    <body>
+        <section class="login-section">
+            <div class="logo">SeedOasis</div>
+            <form action="" method="POST">
+                <input class="input-login" type="text" placeholder="아이디" required name="username">
+                <input class="input-login" type="password" placeholder="비밀번호" required name="password">
+                <input class="btn-login" type="submit" value="로그인">
+                <a href="#" th:href="@{/signup}" class="btn-join">회원가입하기</a>
+                <article class="oauth">
+                    <h3>간편로그인</h3>
+                    <a href="#" th:href="@{/oauth2/authorization/google}"><img class="login-icon" src="../../static/img/login/btn-google-login.png" th:src="@{/img/login/btn-google-login.png}" alt=""></a>
+                    <a href="#" th:href="@{/oauth2/authorization/naver}"><img class="login-icon" src="../../static/img/login/btn-naver-login.png" th:src="@{/img/login/btn-naver-login.png}" alt=""></a>
+                </article>
+            </form>
+        </section>
+    </body>
+</html>

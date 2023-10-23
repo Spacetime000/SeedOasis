@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>문제집</title>
+    <link rel="stylesheet" href="../../static/css/test/test_form.css" th:href="@{/css/test/test_dtl.css}">
+</head>
+<body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    document.addEventListener("DOMContentLoaded", () => {
+        let error = /*[[${error}]]*/ "error";
+        if (error != null) {
+            alert(error);
+        }
+    });
+    /*]]>*/
+</script>
+<main>
+    <section>
+        <h1 class="test-title" th:text="${test.title}">제목</h1>
+        <input type="hidden" th:value="${test.testId}" id="id">
+        <!--/* test 반복 */-->
+        <div class="test" th:each="testForm : ${testFormList}">
+            <!-- <input type="checkbox" name="incorrectCheck" th:value="${testFormStat.index}"> -->
+            <input type="checkbox" name="incorrectCheck" value="true" class="hidden">
+            <div class="test-head">
+                <div class="test-no" th:text="${testFormStat.count} + '.'">1.</div>
+                <div class="test-question" th:text="${testForm.question}"></div>
+            </div>
+            <div class="img-container" th:if="${not #strings.isEmpty(testForm.img)}">
+                <img th:src="${testForm.img}" class="preview">
+            </div>
+
+            <div class="answers">
+                <!-- <h2>정답</h2> -->
+                <textarea class="answers-textarea" placeholder="정답을 입력해주세요."></textarea>
+                <div class="solution" th:text="${testForm.answers}"></div>
+            </div>
+            <button type="button" onclick="incorrect(this)" class="btn-basic hidden incorrect-btn" name="incorrect-btn">오답</button>
+        </div>
+        <div class="answer-btns">
+            <button type="button" onclick="seeAnswer(this)" class="see-answer btn-basic">해답보기</button>
+            <button type="button" class="score hidden btn-basic" onclick="score()">점수 계산</button>
+            <button type="button" onclick="retry(this)" class="retry btn-basic">오답 문제 다시 풀기</button>
+        </div>
+        <div class="scoreboard"></div>
+        <div class="like-btn" th:classappend="${isLike} == true ? 'heart-active'">
+            <p class="like-numb" th:text="${#lists.size(test.testLikes)}" th:classappend="${isLike} == true ? 'heart-active'">좋아요 수</p>
+            <div class="heart" th:classappend="${isLike} == true ? 'heart-active'"></div>
+        </div>
+        <div class="modify">
+            <a href="#" th:href="'/tests/edit/' + ${test.testId}" th:if="${#authentication.name} == ${test.createBy}">수정</a>
+            <a href="/tests">목록</a>
+            <button id="delete-btn" th:if="${#authentication.name} == ${test.createBy}" type="button" class="btn-basic">삭제</button>
+        </div>
+
+    </section>
+</main>
+<script src="../../static/js/test/test_dtl.js" th:src="@{/js/test/test_dtl.js}"></script>
+</body>
+</html>

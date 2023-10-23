@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>프로필 변경</title>
+    <link rel="stylesheet" href="../../static/css/member/profile.css" th:href="@{/css/member/profile.css}">
+</head>
+<body>
+<script th:inline="javascript">
+
+</script>
+<main>
+    <section>
+        <form action="" enctype="multipart/form-data" id="fm" method="post">
+            <div class="profile-container">
+                <img src="" alt="" th:src="${profile}" class="img">
+                <div class="upload">업로드</div>
+            </div>
+            <input type="file" accept="image/*" class="input-img" name="file">
+            <button type="button" class="btn-basic" onclick="btn()">적용하기</button>
+        </form>
+    </section>
+</main>
+<script src="../../static/js/member/profile.js" th:src="@{/js/member/profile.js}"></script>
+</body>
+</html>

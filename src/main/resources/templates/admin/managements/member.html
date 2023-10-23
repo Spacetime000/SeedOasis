@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}"
+      layout:fragment="main">
+<head>
+    <title>회원 관리 페이지</title>
+    <link rel="stylesheet" href="/css/admin/management_member.css">
+</head>
+<body>
+
+
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <section>
+        <h1 class="title">회원 관리 페이지</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>프로필</th>
+                    <th class="sort">아이디 <span th:classappend="${sort.target == 'id' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" data-id="id"></ion-icon></span></th>
+                    <th class="sort">이메일 <span th:classappend="${sort.target == 'email' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" data-id="email"></ion-icon></span></th>
+                    <th class="sort">닉네임 <span th:classappend="${sort.target == 'name' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" data-id="name"></ion-icon></span></th>
+                    <th class="sort">가입날짜 <span th:classappend="${sort.target == 'createTime' ? 'active' : ''}"><ion-icon th:name="${sort.direction.name() == 'DESC' ? 'caret-down-outline' : 'caret-up-outline' }" name="caret-up-outline" data-id="createTime"></ion-icon></span></th>
+                    <th class="sort">권한</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="page : ${pages}">
+                    <td class="profile-td">
+                        <div class="profile-container">  
+                            <img th:src="${page.profile}">
+                        </div>
+                    </td>
+                    <td th:text="${page.id}"></td>
+                    <td th:text="${page.email}"></td>
+                    <td th:text="${page.name}"></td>
+                    <td th:text="${#temporals.format(page.createTime, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${page.role == 'ROLE_ADMIN' ? '관리자' : '회원'}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-container">
+            <ion-icon th:data-prev="${pages.number-1}" id="prev" name="caret-back-circle-outline" class="page-btn" th:classappend="${pages.hasPrevious ? '' : 'disable'}"></ion-icon>
+            <input id="page-input" type="number" class="page-input" th:value="${pages.number + 1}" th:data-last-page="${pages.totalPages}">
+            <span>/</span>
+            <span th:text="${pages.totalPages}">10</span>
+            <ion-icon th:data-next="${pages.number+1}" id="next" name="caret-forward-circle-outline" class="page-btn" th:classappend="${pages.hasNext ? '' : 'disable'}"></ion-icon>
+        </div>
+    </section>
+</main>
+
+<script>
+
+</script>
+
+<script src="/js/admin/management_member.js"></script>
+
+</body>
+</html>

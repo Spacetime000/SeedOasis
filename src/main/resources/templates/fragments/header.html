@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <header th:fragment="headerFragment">
+        <a href="#" th:href="@{/}" class="logo">SeedOasis</a>
+        <ul class="header-list">
+            <li><a href="#" th:href="@{/notice}" id="header-notice">공지사항</a></li>
+            <li><a href="#" th:href="@{/tests}" id="header-tests">문제집</a></li>
+            <li><a href="#" th:href="@{/community}" id="header-community">커뮤니티</a></li>
+            <li><a href="#" th:href="@{/admin}" id="header-admin" sec:authorize="hasRole('ROLE_ADMIN')">관리자 페이지</a></li>
+        </ul>
+    
+        <div class="use">
+            <a href="#" th:href="@{/login}" class="btn-login" sec:authorize="isAnonymous()">Login</a>
+            <div class="profile" sec:authorize="isAuthenticated()">
+                <img th:src="${profileImg}">
+            </div>
+            <div class="profile-menu" sec:authorize="isAuthenticated()">
+                <ul>
+                    <li>
+                        <a href="#" th:href="@{/profile}">
+                            <span class="material-symbols-outlined">
+                                person
+                            </span>
+                            <span>
+                                프로필 변경
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/management/tests/like}">
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                            <span>
+                                좋아요
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/management/tests}">
+                            <span class="material-symbols-outlined">
+                                edit_square
+                            </span>
+                            <span>
+                                내가 작성한 문제집
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/logout}">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                            <span>
+                                로그아웃
+                            </span>
+                        </a>
+                    </li>
+    
+                </ul>
+            </div>
+            <span class="material-symbols-outlined no-select" id="menu-icon">
+                    menu
+                </span>
+            <span class="material-symbols-outlined no-select" id="darkmode">
+                    dark_mode
+            </span>
+        </div>
+    </header>
+</html>

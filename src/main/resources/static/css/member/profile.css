@@ -1,0 +1,61 @@
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#fm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-basic {
+    margin-top: 20px;
+    padding: 16px;
+}
+
+.btn-basic:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.input-img {
+    display: none;
+}
+
+.profile-container {
+    position: relative;
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile-container:hover img {
+    opacity: 0.3;
+}
+
+.profile-container:hover div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.profile-container img {
+    /* width: 256px;
+    height: 256px;
+    border-radius: 50%; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

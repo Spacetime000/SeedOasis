@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>커뮤니티 글 작성</title>
+    <link rel="stylesheet" th:href="@{/css/community/community_create.css}">
+</head>
+<body>
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <section>
+        <form action method="post" th:object=${community}>
+            <select th:field="*{communityCategory}" class="category">
+                <option value="">==분류 선택==</option>
+                <option th:each="communityCategory : ${communityCategories}" 
+                th:value="${communityCategory}" th:text=${communityCategory.name}>
+                </option>
+            </select>
+            <div class="error text-left" th:errors="*{communityCategory}">분류 에러</div>
+            <input type="text" placeholder="제목을 입력해주세요." th:field="*{title}">
+            <div class="error text-left" th:errors="*{title}">제목 에러</div>
+            <textarea th:field="*{content}"></textarea>
+            <div class="error text-left" th:errors="*{content}">내용 에러</div>
+            <div class="btns">
+                <button type="submit" class="btn-basic">등록</button>
+                <button type="button" class="btn-basic" onclick="list()">목록</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<script src="../../static/js/community/community_create.js" th:src="@{/js/community/community_create.js}"></script>
+
+</body>
+</html>

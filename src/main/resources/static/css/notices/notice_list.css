@@ -1,0 +1,129 @@
+.notice-list li {
+    list-style: none;
+    padding: 8px 0;
+}
+
+.notice-list li a {
+    text-decoration: none;
+    color: var(--text-color)
+}
+
+.notice-list li a:hover {
+    color: var(--main-color);
+}
+
+.notice-list li:not(:first-of-type) {
+    border-top: 1px solid gray;
+}
+
+.notice-list li:last-of-type {
+    border-bottom: 1px solid gray;
+}
+
+.notice-info span{
+    font-size: .8rem;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 5px;
+}
+
+.option-search {
+    width: 100px;
+    text-align: center;
+    padding: 5px 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--text-color);
+    height: 35px;
+}
+
+.input-search {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 5px 0;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid var(--text-color);
+    height: 35px;
+}
+
+.btn-search,
+.notice-new {
+    background: var(--main-color);
+    height: 35px;
+    width: 70px;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+}
+
+.btn-search:hover,
+.notice-new:hover {
+    scale: 1.1;
+}
+.pagination-container {
+    width: 100%;
+}
+/* .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pagination-container button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination-container button.disable {
+    color: #999;
+    cursor: not-allowed;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    background: var(--bg-color);
+    border: solid 2px #666;
+}
+
+.pagination ul {
+    display: flex;
+    list-style: none;
+    margin: 0 30px;
+}
+
+.pagination ul li {
+    display: inline-block;
+    margin: 0 10px;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination ul li:hover {
+    scale: 1.2;
+}
+
+.pagination ul li.active {
+    color: var(--main-color);
+    background: var(--text-color);
+} */

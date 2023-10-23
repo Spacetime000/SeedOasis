@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}"
+      layout:fragment="main">
+<head>
+    <title>메인</title>
+    <link rel="stylesheet" href="../../static/css/index.css" th:href="@{/css/index.css}">
+</head>
+<body>
+
+<main>
+    <section>
+        <div class="container">
+            <table>
+                <thead class="title">
+                    <tr>
+                        <th>공지사항</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="notice : ${notices}">
+                        <td>
+                            <div><a href="#" th:text="${notice.title}" th:href="@{|/notice/${notice.id}|}"></a></div>
+                            <div class="info">
+                                <span th:text="${#temporals.format(notice.createTime, 'yyyy.MM.dd HH:mm')}"></span>
+                                <span th:text="'조회 ' + ${notice.views}"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead class="title">
+                    <tr>
+                        <th>문제집</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="test : ${tests}">
+                        <td>
+                            <div>
+                                <a href="#" th:href="|/tests/${test.id}|">
+                                    <span th:text="'[' + ${test.category} + ']'"></span>
+                                    <span th:text="${test.title}"></span>
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span th:text="${test.writer}"></span>
+                                <span th:text="${#temporals.format(test.createTime, 'yyyy.MM.dd HH:mm')}"></span>
+                                <span th:text="'조회 ' + ${test.views}"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead class="title">
+                    <tr>
+                        <th>커뮤니티</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="community : ${communities}">
+                        <td>
+                            <div>
+                                <a href="#" th:href="@{|/community/${community.id}|}">
+                                    <span th:text="'[' + ${community.category} + ']'"></span>
+                                    <span th:text="${community.title}"></span>
+                                </a>
+                            </div>
+                            <div class="info">
+                                <span th:text="${community.writer}"></span>
+                                <span th:text="${#temporals.format(community.createTime, 'yyyy.MM.dd HH:mm')}"></span>
+                                <span th:text="'조회 ' + ${community.views}"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+
+<!-- <script src="../../static/js/test/test_list.js" th:src="@{/js/test/test_list.js}"></script> -->
+
+</body>
+</html>

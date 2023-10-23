@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>공지사항</title>
+    <link rel="stylesheet" href="../../static/css/notices/notice_list.css" th:href="@{/css/notices/notice_list.css}">
+</head>
+<body>
+<main>
+    <section>
+        <ul class="notice-list">
+            <li th:each="page : ${pages}">
+                <a href="#" th:href="@{'/notice/'} + ${page.noticeId}">
+                    <p class="notice-title" th:text="${page.title}">제목</p>
+                    <div class="notice-info">
+                        <span class="notice-date" th:text="${#temporals.format(page.createTime, 'yyyy-MM-dd HH:mm')}">2022.02.02</span>
+                        <span class="notice-views">조회수 [[${page.views}]]</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="search">
+            <select name="" id="option-search" class="option-search">
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+            </select>
+            <input type="text" class="input-search" id="input-search" placeholder="검색">
+            <button type="button" class="btn-search" id="btn-search">검색</button>
+            <button type="button" class="notice-new" id="btn-new" sec:authorize="hasRole('ROLE_ADMIN')">글쓰기</button>
+        </div>
+        <div class="pagination-container" 
+            th:with="start=${(pages.number/maxPage)*maxPage + 1}, end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})">
+            <div class="pagination">
+            <button id="prev" th:data-prev="${pages.number - 1}" th:classappend="${pages.number eq 0} ? 'disable' : ''" type="button">prev</button>
+            <ul>
+                <li th:each="page : ${#numbers.sequence(start, end)}" th:classappend="${pages.number eq page-1} ? 'active' : ''" class="link" th:data-page="${page}" th:text="${page}">1</li>
+            </ul>
+            <button id="next" th:data-max="${pages.totalPages}" th:data-next="${pages.number + 1}" th:classappend="${pages.number+1 ge pages.totalPages} ? 'disable' : ''" type="button">Next</button>
+            </div>
+        </div>
+        
+    </section>
+</main>
+<script src="../../static/js/notices/notice_list.js" th:src="@{/js/notices/notice_list.js}"></script>
+
+</body>
+</html>

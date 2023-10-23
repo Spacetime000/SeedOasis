@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>문제집</title>
+    <link rel="stylesheet" href="../../static/css/test/test_form.css" th:href="@{/css/test/test_form.css}">
+</head>
+<body>
+<script th:inline="javascript">
+
+</script>
+<main>
+    <section>
+        <h1 class="test-title" th:text="${test.title}">전기기사</h1>
+        <form method="post" action="" class="test-form" enctype="multipart/form-data">
+
+            <!--/* test 반복 */-->
+            <div class="test" th:each="testForm : ${testFormList}">
+                <div class="test-head">
+                    <div class="test-no" th:text="${testFormStat.count} + '.'">1.</div>
+                    <input class="test-question" name="question" type="text" th:value="${testForm.question}" placeholder="문제를 입력하세요." required>
+                </div>
+                <!--/* img가 존재시 */-->
+                <div class="test-img" th:if="${not #strings.isEmpty(testForm.img)}">
+                    <input type="hidden" name="originImg" th:value="${testForm.img}" th:attr="data-img=${testForm.img}">
+                    <img src="" th:src="${testForm.img}" class="preview">
+                </div>
+
+                <!--/* img가 없을 시 */-->
+                <div class="test-img" th:if="${#strings.isEmpty(testForm.img)}">
+                    <input type="hidden" name="originImg">
+                    <div>이미지 추가 클릭</div>
+                </div>
+
+                <input class="input-img" type="file" name="img" accept="image/*">
+                <div class="img-btns">
+                    <button type="button" class="img-btn-remove" onclick="imgRemove(this)">이미지 제거</button>
+                    <button type="button" class="img-btn-reset" th:if="${not #strings.isEmpty(testForm.img)}" onclick="imgReset(this)">기존 이미지 사용</button>
+                </div>
+                <div class="answers">
+                    <h2>정답</h2>
+                    <textarea class="answers-textarea" name="answers" placeholder="정답을 입력해주세요." required></textarea>
+                </div>
+                <div class="test-remove">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </div>
+            </div>
+        </form>
+        <button type="button" class="test-add"><ion-icon name="add-outline"></ion-icon></button>
+        <button type="button" id="save" class="test-save">저장</button>
+    </section>
+</main>
+<script src="../../static/js/test/test_form.js" th:src="@{/js/test/test_form.js}"></script>
+</body>
+</html>

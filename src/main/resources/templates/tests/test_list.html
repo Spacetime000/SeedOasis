@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>문제집</title>
+    <link rel="stylesheet" href="../../static/css/test/test_list.css" th:href="@{/css/test/test_list.css}">
+</head>
+<body>
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <div id="overlay"></div>
+    <section>
+        <button class="btn-modal btn-basic" sec:authorize="isAuthenticated()">문제집 생성</button>
+        <form action="tests/new" th:object="${testDto}" method="post" id="modal">
+            <div class="modal-header">
+                <div class="modal-title">문제집 생성</div>
+                <button class="close-button" type="button"><ion-icon name="close-outline"></ion-icon></button>
+            </div>
+            <div class="modal-body">
+                <select th:field="*{testCategory}" class="category-select">
+                    <option th:each="category : ${testCategories}" th:value="${category.name()}" th:text="${category.category}"></option>
+                </select>
+                <input type="text" placeholder="제목" th:field="*{title}" class="modal-input">
+                <button type="submit" class="btn-basic">전송</button>
+            </div>
+        </form>
+        <table class="tests-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>카테고리</th>
+                    <th class="text-left">제목</th>
+                    <th>조회수</th>
+                    <th>좋아요</th>
+                    <th>작성자</th>
+                    <th>작성날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="page : ${pages}">
+                    <td th:text="${page.id}">아이디</td>
+                    <td th:text="${page.category.category}">카테고리</td>
+                    <td class="text-left"><a th:text="${page.title}" href="#" th:href="@{/tests/} + ${page.id}">제목</a></td>
+                    <td th:text="${page.views}">조회수</td>
+                    <td th:text="${page.like}">좋아요</td>
+                    <td th:text="${page.createBy}">작성자</td>
+                    <td th:text="${#temporals.format(page.createTime, 'yyyy-MM-dd')}">날짜</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="search">
+            <select name="search-category" id="search-category">
+                <option value="all">전체</option>
+                <option th:each="category : ${testCategories}" th:value="${category.name()}" th:text="${category.category}"></option>
+            </select>
+            <select class="search-option" id="search-option">
+                <option value="title">제목</option>
+                <option value="createBy">작성자</option>
+            </select>
+            <input type="text" class="input-search" id="input-search" placeholder="검색">
+            <button type="button" class="btn-search btn-basic" id="btn-search">검색</button>
+        </div>
+        <div class="pagination-container" 
+            th:with="start=${(pages.number/maxPage)*maxPage + 1}, end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})">
+            <div class="pagination">
+            <button id="prev" th:data-prev="${pages.number - 1}" th:classappend="${pages.number eq 0} ? 'disable' : ''" type="button">prev</button>
+            <ul>
+                <li th:each="page : ${#numbers.sequence(start, end)}" th:classappend="${pages.number eq page-1} ? 'active' : ''" class="link" th:data-page="${page}" th:text="${page}">1</li>
+            </ul>
+            <button id="next" th:data-max="${pages.totalPages}" th:data-next="${pages.number + 1}" th:classappend="${pages.number+1 ge pages.totalPages} ? 'disable' : ''" type="button">Next</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="../../static/js/test/test_list.js" th:src="@{/js/test/test_list.js}"></script>
+
+</body>
+</html>

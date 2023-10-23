@@ -1,0 +1,85 @@
+* {
+    text-decoration: none;
+}
+
+body {
+    height: 100vh;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.login-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-login {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    width: 400px;
+    height: 50px;
+    background: var(--input-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    padding-left: 10px;
+}
+
+.error {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.btn-login {
+    height: 50px;
+    margin: 20px 0;
+    background: var(--main-color);
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+}
+
+.btn-join {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.btn-join:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.login-icon {
+    margin: 5px 0;
+    width: 200px;
+    height: 50px;
+}
+
+.oauth {
+    margin-top: 20px;
+}
+
+.oauth h3 {
+    text-align: center;
+}
+
+@media (max-width: 450px) {
+    .input-login,
+    .btn-login {
+        width: 200px;
+    }
+
+    .oauth {
+        display: flex;
+        flex-direction: column;
+    }
+}

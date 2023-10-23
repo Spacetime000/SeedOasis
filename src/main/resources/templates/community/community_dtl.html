@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}"
+      layout:fragment="main">
+<head>
+    <title>커뮤니티</title>
+    <link rel="stylesheet" href="../../static/css/community/community_dtl.css" th:href="@{/css/community/community_dtl.css}">
+</head>
+<body>
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <section th:object="${community}">
+        <input type="hidden" th:field="*{id}">
+        
+        <div class="btns-writer">
+            <button type="button" class="btn-basic" onclick="location.href='/community'">목록</button>
+            <button type="button" class="btn-basic" th:if="${#authentication.name} == *{createBy}" th:onclick="|location.href=*{id} + '/modify'|">수정</button>
+            <button type="button" id="community-del" class="btn-basic" th:if="${#authentication.name} == *{createBy}">삭제</button>
+        </div>
+        <div th:text="'[' + *{communityCategory.name} + ']'" id="category"></div>
+        <h1 th:text="*{title}" id="title">제목</h1>
+        <div id="writer-info">
+            <div class="profile-container">
+                <img th:src="*{profile}">
+            </div>
+            <div id="info">
+                <div th:text="*{writer}">닉네임</div>
+                <div id="time-view">
+                    <div th:text="*{#temporals.format(createTime, 'yyyy.MM.dd HH:mm')}"></div>
+                    <div th:text="'조회수 ' + *{views}"></div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <pre th:text="*{content}" id="content">내용</pre>
+        <hr>
+        <!-- 댓글 입력창 -->
+        <textarea id="new-comment" class="new-comment" placeholder="댓글을 입력해주세요."></textarea>
+        <div id="btn-comment-container">
+            <button type="button" class="btn-comment btn-basic">등록</button>
+        </div>
+        <!-- 댓글 -->
+        <div class="comment-container">
+            <div id="comment-count" th:text="'댓글 ' + *{#lists.size(commentDtoList)}"></div>
+            <div class="comment" th:each="comment : *{commentDtoList}">
+                <div class="profile-container">
+                    <img th:src="${comment.profile}">
+                </div>
+                <div class="comment-info">
+                    <input type="hidden" th:value="${comment.id}">
+                    <div class="nickname" th:text="${comment.name}">닉네임</div>
+                    <pre class="comment-detail" th:text="${comment.comment}">코멘트</pre>
+                    <div class="time" th:text="${#temporals.format(comment.createTime, 'yyyy.MM.dd HH:mm')}"></div>
+                    <div class="comment-btns" th:if="${#authentication.name} == ${comment.createBy}">
+                        <button type="button" onclick="modifyComment(this)">수정</button>
+                        <button type="button" th:attr="data-id=${comment.id}" onclick="delComment(this)">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+<script src="../../static/js/community/community_dtl.js" th:src="@{/js/community/community_dtl.js}"></script>
+
+</body>
+</html>

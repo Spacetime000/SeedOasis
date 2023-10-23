@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}"
+      layout:fragment="main">
+<head>
+    <title>커뮤니티 댓글 관리 페이지</title>
+    <link rel="stylesheet" href="/css/admin/management_comment.css">
+</head>
+<body>
+
+
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <section>
+        <h1 class="title">커뮤니티 댓글 관리 페이지</h1>
+        <div class="del-container">
+            <button type="button" class="btn-basic" onclick="del()">삭제</button>
+        </div>
+
+        <ul class="content-container">
+            <li th:each="page : ${pages}">
+                <input type="checkbox" class="ck" th:value="${page.id}">
+                <a th:href="@{|/community/${page.communityId}|}">
+                    <div class="comment-container">
+                        <pre th:text="${page.comment}"></pre>
+                        <div th:text="${page.name + '(' + page.createBy + ')'}">작성자</div>
+                        <div th:text="${#temporals.format(page.createTime, 'yyyy-MM-dd')}">날짜</div>
+                        <div th:text="${page.title}">제목</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="page-container">
+            <ion-icon th:data-prev="${pages.number-1}" id="prev" name="caret-back-circle-outline" class="page-btn" th:classappend="${pages.hasPrevious ? '' : 'disable'}"></ion-icon>
+            <input id="page-input" type="number" class="page-input" th:value="${pages.number + 1}" th:data-last-page="${pages.totalPages}">
+            <span>/</span>
+            <span th:text="${pages.totalPages}">10</span>
+            <ion-icon th:data-next="${pages.number+1}" id="next" name="caret-forward-circle-outline" class="page-btn" th:classappend="${pages.hasNext ? '' : 'disable'}"></ion-icon>
+        </div>
+    </section>
+</main>
+
+<script>
+
+</script>
+
+<script src="/js/admin/management_comment.js"></script>
+
+</body>
+</html>

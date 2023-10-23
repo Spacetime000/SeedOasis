@@ -1,0 +1,73 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+section {
+    width: 1000px;
+}
+
+.management {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.management a {
+    background-color: var(--main-color);
+    padding: 4px 16px;
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.management a span {
+    color: tomato;
+    margin-left: 8px;
+}
+
+.today-container {
+    border: 6px solid var(--main-color);
+    border-radius: 10px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.today-container h1 {
+    margin-bottom: 20px;
+}
+
+.today-container ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.today-container ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.today-container ul li a span {
+    color: tomato;
+}
+
+.graph-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.graph-container .graph {
+    width: 300px;
+    height: 300px;
+}
+

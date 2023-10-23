@@ -1,0 +1,169 @@
+section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.test-title {
+    font-family: "TheJamsil5Bold";
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-bottom: 10px;
+    color: var(--bg-color);
+    font-size: 2rem;
+    background: var(--main-color);
+    text-shadow: 2px 8px 6px rgba(0,0,0, 0.2), 0px -3px 20px rgba(255,255,255, 0.4);
+}
+
+.test-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.test {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.test-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.test-head * {
+    font-family: "TheJamsil5Bold";
+    font-size: 1.5rem;
+}
+
+.test-no {
+    margin-right: 3px;
+}
+
+.test-question {
+    border: none;
+    border-bottom: 2px solid var(--main-color);
+    background: transparent;
+    width: 80%;
+    outline: none;
+    color: var(--text-color);
+    padding: 5px;
+}
+
+.input-img {
+    display: none;
+}
+
+.test-img {
+    width: 900px;
+    height: 450px;
+    border: 2px dashed #ccc;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.test-img:hover {
+    cursor: pointer;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.answers h2 {
+    font-family: "TheJamsil5Bold";
+    margin-bottom: 10px;
+}
+
+.answers-textarea {
+    width: 80%;
+    height: 78px;
+    padding: 1rem;
+    outline: none;
+    resize: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    border-color: #ccc;
+    background: var(--input-color);
+    color: var(--text-color);
+}
+
+.answers-textarea:focus,
+.answers-textarea:valid {
+    border-color: var(--main-color);
+}
+
+.answers-textarea::-webkit-scrollbar {
+    width: 0px;
+}
+
+.test-add {
+    width: 100%;
+    background: var(--main-color);
+    border: none;
+    height: 64px;
+    font-size: 3rem;
+}
+
+.test-add:hover {
+    cursor: pointer;
+}
+
+.test-remove {
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.test-remove:hover {
+    cursor: pointer;
+    color: var(--main-color);
+    scale: 1.2;
+}
+
+.test-save {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.test-save:hover {
+    color: var(--main-color);
+}
+
+.preview {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.img-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin-bottom: 1.5rem;
+}
+
+.img-btns button {
+    background: var(--main-color);
+    border: none;
+    border-radius: 5px;
+    padding:  .5rem 1rem;
+}

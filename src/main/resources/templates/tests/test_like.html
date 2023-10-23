@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default_layout}"
+    layout:fragment="main">
+<head>
+    <title>좋아요</title>
+    <link rel="stylesheet" href="../../static/css/test/test_like.css" th:href="@{/css/test/test_like.css}">
+</head>
+<body>
+<script th:inline="javascript">
+
+</script>
+
+<main>
+    <section>
+        <div th:if="${pages.isEmpty}" class="empty-message">좋아요 한 문제집이 없습니다.</div>
+        <table th:if="${not pages.isEmpty}" class="basic-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>카테고리</th>
+                    <th class="text-left">제목</th>
+                    <th>조회수</th>
+                    <th>좋아요</th>
+                    <th>작성자</th>
+                    <th>작성날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="page : ${pages}">
+                    <td th:text="${page.id}">아이디</td>
+                    <td th:text="${page.category.category}">카테고리</td>
+                    <td class="text-left"><a th:text="${page.title}" href="#" th:href="@{/tests/} + ${page.id}">제목</a></td>
+                    <td th:text="${page.views}">조회수</td>
+                    <td th:text="${page.like}">좋아요</td>
+                    <td th:text="${page.createBy}">작성자</td>
+                    <td th:text="${#temporals.format(page.createTime, 'yyyy-MM-dd')}">날짜</td>
+                </tr>
+            </tbody>
+        </table>
+        <div th:if="${not pages.isEmpty}" class="pagination-container" 
+            th:with="start=${(pages.number/maxPage)*maxPage + 1}, end=(${(pages.totalPages == 0) ? 1 : (start + (maxPage - 1) < pages.totalPages ? start + (maxPage - 1) : pages.totalPages)})">
+            <div class="pagination">
+            <button id="prev" th:data-prev="${pages.number - 1}" th:classappend="${pages.number eq 0} ? 'disable' : ''" type="button">prev</button>
+            <ul>
+                <li th:each="page : ${#numbers.sequence(start, end)}" th:classappend="${pages.number eq page-1} ? 'active' : ''" class="link" th:data-page="${page}" th:text="${page}">1</li>
+            </ul>
+            <button id="next" th:data-max="${pages.totalPages}" th:data-next="${pages.number + 1}" th:classappend="${pages.number+1 ge pages.totalPages} ? 'disable' : ''" type="button">Next</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="../../static/js/test/test_like.js" th:src="@{/js/test/test_like.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeedOasis - 회원가입</title>
+    <link rel="stylesheet" href="../../static/css/default.css" th:href="@{/css/default.css}">
+    <link rel="stylesheet" href="../../static/css/member/signup.css" th:href="@{/css/member/signup.css}">
+</head>
+<body>
+    <section class="signup">
+        <div class="logo">SeedOasis</div>
+        <form action="" class="form-signup" method="post" th:object="${joinDto}" name="form-signup">
+            <p class="input-title">아이디</p>
+            <input type="text" placeholder="영소문자와 숫자 4~15자로 입력해주세요." th:field="*{memberId}">
+            <p class="error" th:errors="*{memberId}">아이디 에러 메시지</p>
+
+            <p class="input-title">비밀번호</p>
+            <input type="password" placeholder="8자 이상 입력해주세요." th:field="*{password}">
+            <p class="error" th:errors="*{password}">비밀번호 에러 메시지</p>
+
+            <p class="input-title">이메일</p>
+            <input type="email" placeholder="이메일을 입력해주세요." th:field="*{email}">
+            <p class="error" th:errors="*{email}">이메일 에러 메시지</p>
+
+            <p class="input-title">닉네임</p>
+            <input type="text" placeholder="한글 또는 영소문자로 2~8자 이내로 입력해주세요." th:field="*{name}">
+            <p class="error" th:errors="*{name}">닉네임 에러 메시지</p>
+            
+            <input class="btn-submit" type="submit" value="가입하기">
+        </form>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+.head-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.state {
+    font-size: .5rem;
+}
+
+.division {
+    margin: .5rem 0;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    background: var(--main-color);
+    color: var(--text-color);
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    cursor: pointer;
+}

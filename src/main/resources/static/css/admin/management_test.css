@@ -1,0 +1,157 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.btn-del {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.btn-del button:hover {
+    cursor: pointer;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category {
+    text-align: center;
+    width: 80px;
+    height: 30px;
+}
+
+.search-container select {
+    text-align: center;
+    height: 30px;
+    width: 100px;
+}
+
+.search-container input {
+    height: 30px;
+    width: 200px;
+}
+
+.search-container button {
+    height: 30px;
+    border: none;
+    background: var(--main-color);
+    padding: 5px;
+}
+
+.search-container button:hover {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table th,
+table td {
+    text-align: center;
+}
+
+table thead {
+    background: var(--main-color);
+}
+
+table thead th {
+    padding: 10px 0;
+}
+
+table thead th span {
+    display: inline-block;
+    border-radius: 50%;
+}
+
+table thead th span.active {
+    color: yellow;
+}
+
+table thead th:hover {
+    cursor: pointer;
+}
+
+table thead th:hover span {
+    color: red;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: var(--even-color);
+}
+
+table tbody tr td {
+    padding: 5px 0;
+}
+
+table tbody tr td a {
+    text-decoration: none;
+    text-align: center;
+    color: var(--text-color);
+}
+
+table tbody tr td a:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.ck {
+    width: 16px;
+    height: 16px;
+    vertical-align: baseline;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.page-btn {
+    font-size: 20px;
+}
+
+.page-btn:hover {
+    cursor: pointer;
+}
+
+.page-btn.disable {
+    color: #666;
+    cursor: not-allowed;
+}
+
+.page-input {
+    width: 50px;
+    text-align: center;
+}
+
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

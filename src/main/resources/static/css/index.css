@@ -1,0 +1,48 @@
+section {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container table {
+    margin: 32px 0;
+}
+
+.container .title {
+    font-size: 32px;
+    background: var(--main-color);
+    
+}
+
+.container .title th {
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.container table tbody tr td {
+    padding: 5px 10px;
+    border-bottom: 1px solid gray;
+}
+
+.container table tbody tr td a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.container table tbody tr td a:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.info {
+    font-size: 8px;
+    color: #999;
+}

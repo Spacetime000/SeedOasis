@@ -1,0 +1,94 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.del-container {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.del-container:hover {
+    cursor: pointer;
+}
+
+.ck {
+    width: 16px;
+    height: 16px;
+    vertical-align: baseline;
+    margin-right: 10px;
+    margin-top: 10px
+}
+
+.content-container li {
+    display: flex;
+    border-bottom: 1px solid #dddddd;
+    padding: 20px 0;
+}
+
+.content-container li:nth-of-type(even) {
+    background-color: var(--even-color);
+}
+
+.content-container li a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.content-container li a:hover {
+    text-decoration: underline;
+}
+
+.comment-container pre {
+    white-space: pre-wrap;    
+}
+
+.comment-container div {
+    color: #999;
+    font-size: 10px;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.page-btn {
+    font-size: 20px;
+}
+
+.page-btn:hover {
+    cursor: pointer;
+}
+
+.page-btn.disable {
+    color: #666;
+    cursor: not-allowed;
+}
+
+.page-input {
+    width: 50px;
+    text-align: center;
+}
+
+.page-input::-webkit-outer-spin-button,
+.page-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

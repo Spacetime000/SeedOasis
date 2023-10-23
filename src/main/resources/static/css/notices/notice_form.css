@@ -1,0 +1,49 @@
+.ck.ck-content:not(.ck-comment__input *) {
+    height: 450px;
+    overflow-y: auto;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-notice-title {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.btn-notice {
+    background: var(--main-color);
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+.btn-notice:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 5px 1px var(--text-color);
+}
+
+.ck {
+    color: black;
+}
+
+.error {
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-size: .8rem;
+}
+
+@media (max-width: 550px) {
+    .btn-notice {
+        padding: 5px;
+    }
+
+    .title h1 {
+        font-size: 1rem;
+    }
+}

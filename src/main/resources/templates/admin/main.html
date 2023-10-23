@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}"
+      layout:fragment="main">
+<head>
+    <title>관리자 메인 페이지</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <link rel="stylesheet" href="/css/admin/main.css">
+</head>
+<body>
+
+
+<script th:inline="javascript">
+    let date = [[${dateList}]];
+    let memberCount = [[${memberCountList}]];
+    let communityCount = [[${communityCountList}]];
+    let testCount = [[${testCountList}]];
+</script>
+
+<main>
+    <section>
+        <div class="management">
+            <a href="/admin/members">회원 관리<span th:text="${memberCount}">10</span></a>
+            <a href="/admin/tests">문제집 관리<span th:text="${testCount}">10</span></a>
+            <a href="/admin/community">커뮤니티 관리<span th:text="${communityCount}">10</span></a>
+            <a href="/admin/comments">댓글 관리<span th:text="${commentCount}">10</span></a>
+        </div>
+
+        <!-- 현황판 -->
+        <div class="today-container">
+            <h1>TO DAY 현황</h1>
+            <ul>
+                <li><a href="#">신규 회원 <span th:text="${todayMember}"></span></a></li>
+                <li><a href="#">커뮤니티 새 글 <span th:text="${todayCommunity}">10</span></a></li>
+                <li><a href="#">문제집 새 글 <span th:text="${todayTest}">10</span></a></li>
+            </ul>
+        </div>
+
+        <div class="graph-container">
+            <div class="graph">
+                <canvas id="goodCanvas1" role="img"></canvas>
+            </div>
+            <div class="graph">
+                <canvas id="goodCanvas2" role="img"></canvas>
+            </div>
+            <div class="graph">
+                <canvas id="goodCanvas3" role="img"></canvas>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            const ctx1 = document.getElementById('goodCanvas1');
+            const ctx2 = document.getElementById('goodCanvas2');
+            const ctx3 = document.getElementById('goodCanvas3');
+
+            new Chart(ctx1, {
+                plugins: [ChartDataLabels],
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [{
+                        label: '가입 회원수',
+                        data: memberCount,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#999'
+                            },
+                            ticks : {
+                                color: '#999'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#999'
+                            },
+                            ticks : {
+                                color: '#999',
+                                stepSize: 10
+                            }
+                        }
+                    },
+                    maintainAspectRatio : false,
+                    plugins : {
+                        title : {
+                            display : true,
+                            text : '최근 7일간 일자별 신규회원',
+                            padding: {
+                                bottom: 30
+                            }
+                        },
+                        legend : {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            enabled: false
+                        },
+                        datalabels: {
+                            color: 'red',
+                            font : {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) {
+                                return value.toLocaleString();
+                            },
+                            align: 'top'
+                        }
+                    }
+                }
+            });
+
+            new Chart(ctx2, {
+                plugins: [ChartDataLabels],
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [{
+                        label: '커뮤니티 글 수',
+                        data: communityCount,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#999'
+                            },
+                            ticks : {
+                                color: '#999'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#999'
+                            },
+                            ticks : {
+                                color: '#999',
+                                stepSize: 10
+                            }
+                        }
+                    },
+                    maintainAspectRatio : false,
+                    plugins : {
+                        title : {
+                            display : true,
+                            text : '최근 7일간 일자별 커뮤니티 글',
+                            padding: {
+                                bottom: 30
+                            }
+                        },
+                        legend : {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            enabled: false
+                        },
+                        datalabels: {
+                            color: 'red',
+                            font : {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) {
+                                return value.toLocaleString();
+                            },
+                            align: 'top'
+                        }
+                    }
+                }
+            });
+
+            new Chart(ctx3, {
+                plugins: [ChartDataLabels],
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [{
+                        label: '작성된 문제집 수',
+                        data: testCount,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#999'
+                            },
+                            ticks : {
+                                color: '#999'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#999'
+                            },
+                            ticks : {
+                                color: '#999',
+                                stepSize: 10,
+                            }
+                        }
+                    },
+                    maintainAspectRatio : false,
+                    plugins : {
+                        title : {
+                            display : true,
+                            text : '최근 7일간 일자별 문제집',
+                            padding: {
+                                bottom: 30
+                            }
+                        },
+                        legend : {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            enabled: false
+                        },
+                        datalabels: {
+                            color: 'red',
+                            font : {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) {
+                                return value.toLocaleString();
+                            },
+                            align: 'top'
+                        }
+                    }
+                }
+            });
+        </script>
+
+    </section>
+</main>
+
+<script src="../../static/js/admin/main.js" th:src="@{/js/admin/main.js}"></script>
+
+</body>
+</html>
